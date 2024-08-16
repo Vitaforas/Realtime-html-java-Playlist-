@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Video Playlist</title>
+</head>
+<body>
+<h1>Live Video Playlist</h1>
+
+<div id="video-container"></div>
+
+<script>
+const videoUrls = [
+    'https://www.example.com/video1.mp4',
+    'https://www.example.com/video2.mp4',
+    'https://www.example.com/video3.mp4'
+];
+
+const videoContainer = document.getElementById('video-container');
+let currentVideoIndex = 0;
+
+function loadVideo() {
+    const videoElement = document.createElement('video');
+    videoElement.src = videoUrls[currentVideoIndex];
+    videoElement.controls = true;
+    videoElement.autoplay = true;
+    videoElement.addEventListener('ended', playNextVideo);
+    videoContainer.innerHTML = '';
+    videoContainer.appendChild(videoElement);
+}
+
+function playNextVideo() {
+    currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
+    loadVideo();
+}
+
+loadVideo();
+</script>
+
+</body>
+</html>

@@ -4,8 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LIVE</title>
+
+
+<style>
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+}
+</style>
 </head>
 <body>
+
+<center>
 <h1>LIVE</h1>
 
 <div id="video-container"></div>
@@ -38,5 +49,37 @@ function playNextVideo() {
 loadVideo();
 </script>
 
+
+
+
+
+
+<input type="text" id="searchInput" placeholder="Suchen...">
+<ul id="searchResults"></ul>
+
+<script>
+const data = ['Apple', 'Banana', 'Orange', 'Pineapple', 'Grapes'];
+
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', function() {
+    const searchText = searchInput.value.toLowerCase();
+    const filteredData = data.filter(item => item.toLowerCase().includes(searchText));
+
+    displayResults(filteredData);
+});
+
+function displayResults(results) {
+    searchResults.innerHTML = '';
+
+    results.forEach(result => {
+        const li = document.createElement('li');
+        li.textContent = result;
+        searchResults.appendChild(li);
+    });
+}
+</script>
+</center>
 </body>
 </html>
